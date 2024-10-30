@@ -9,9 +9,9 @@ require('dotenv').config({ path: '.env' }); // Cargar var.env
 const app = express();
 
 app.use(cors({
-    origin: 'https://email-sender-service-8289.onrender.com', // Cambia esto por la URL de tu frontend
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos permitidos
-    allowedHeaders: ['Content-Type'], // Cabeceras permitidas
+    origin: 'https://padron-coronel-suarez.onrender.com', // Cambia esto por la URL de tu frontend
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type'],
 }));
 app.use(express.json());
 
@@ -106,7 +106,7 @@ const checkAndSendEmail = () => {
     }
 };
 
-app.post('/send-email', (req, res) => {
+app.post('/send-email',  cors(), (req, res) => {
     const { nombre, apellido, dni, afiliado } = req.body;
 
     // Verificar si la consulta ya existe
