@@ -91,12 +91,12 @@ const checkAndSendEmail = () => {
     const hasOneWeekPassed = lastSentTime === null || (currentTime - lastSentTime >= oneWeek);
     
     // Verificar si se han hecho al menos 10 consultas
-    if (consultas.length >= 10 && (hasOneWeekPassed || lastSentTime === null)) {
+    if (consultas.length >= 50 && (hasOneWeekPassed || lastSentTime === null)) {
         // Actualizar el archivo Excel con las consultas
         const updatedExcelFilePath = updateExcelWithConsultas();
 
         // Enviar correo con el archivo actualizado
-        sendEmail(process.env.GMAIL_USER, 'Consulta de Afiliado', 'Este es el archivo Excel con las consultas actualizadas.', updatedExcelFilePath);
+        sendEmail(process.env.GMAIL_USER, 'Consulta de Afiliado', `Este es el archivo Excel con las consultas actualizadas de las fechas ${lastSentTime} - ${currentTime} .`, updatedExcelFilePath);
         
         // Actualizar el tiempo del último envío
         lastSentTime = currentTime;
