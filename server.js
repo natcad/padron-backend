@@ -7,7 +7,12 @@ const fs = require('fs');
 require('dotenv').config({ path: '.env' }); // Cargar var.env
 
 const app = express();
-app.use(cors());
+
+app.use(cors({
+    origin: 'https://email-sender-service-8289.onrender.com', // Cambia esto por la URL de tu frontend
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos permitidos
+    allowedHeaders: ['Content-Type'], // Cabeceras permitidas
+}));
 app.use(express.json());
 
 // Configura el transportador de nodemailer
